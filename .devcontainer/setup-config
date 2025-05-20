@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+apt-get -y install \
+	git \
+	less \
+	man \
+	vim
+
+cat <<-'EOF' > '/usr/local/bin/yes-latexmk-f'
+	#!/usr/bin/env bash
+
+	yes '' | latexmk -f "$@"
+	echo done
+EOF
+chmod a+rx '/usr/local/bin/yes-latexmk-f'

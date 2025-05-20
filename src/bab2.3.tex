@@ -1,0 +1,44 @@
+\section{Dependent Type Theory}
+
+"Teori tipe" mendapatkan namanya dari fakta bahwa setiap ekspresi memiliki tipe. Misalnya, dalam konteks tertentu, x + 0 bisa menunjukkan angka natural, sementara f bisa merujuk pada sebuah fungsi pada angka natural. Apa yang membuat teori tipe sederhana menjadi penting adalah kemampuan untuk membangun tipe-tipe baru dari tipe yang sudah ada. Sebagai contoh, jika a dan b adalah tipe, a → b menunjukkan tipe fungsi dari a ke b, dan a × b menunjukkan tipe pasangan yang terdiri dari elemen a yang dipasangkan dengan elemen b, sebuah konsep yang dikenal sebagai Cartesian Product.
+
+Karena setiap ekspresi dalam Lean memiliki tipe, ini secara alami menimbulkan pertanyaan: tipe apa yang dimiliki oleh Type itu sendiri? Type 0 dapat dianggap sebagai alam semesta dari tipe "kecil" atau "biasa". Type 1 adalah alam semesta yang lebih besar dari tipe, yang mengandung Type 0 sebagai elemen, dan Type 2 adalah alam semesta yang bahkan lebih besar, yang mengandung Type 1 sebagai elemen. Urutan ini berlanjut tanpa batas, dengan sebuah Type n untuk setiap angka natural n. Istilah Type hanyalah singkatan dari Type 0.
+
+Salah satu cara yang membantu untuk memahami hubungan ini adalah melalui tabel \ref{table:type-universe}, di mana pergerakan sepanjang sumbu x mewakili perubahan dalam alam semesta, dan pergerakan sepanjang sumbu y mewakili perubahan dalam apa yang disebut sebagai "derajat".
+
+\begin{table}[H]
+    \label{table:type-universe}
+    \caption{Semesta Tipe  \citep{Avigad2024}}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        sort & Prop & Type & Type 1 & Type 2 \\
+        \hline
+        type & True & Bool & Nat → Type & Type → Type 1 \\
+        \hline
+        term & trivial & true & $\lambda$ n $\mapsto$ Fin n & $\lambda$ (\_ : Type) $\mapsto$ Type \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Beberapa operasi perlu polimorfik terhadap semesta tipe. Sebagai contoh, List $\alpha$ harus masuk akal untuk tipe $\alpha$ manapun, terlepas dari semesta tipe mana $\alpha$ berada.
+
+Dalam dependent type theory, yang membuatnya "dependent" adalah fakta bahwa tipe-tipe dapat bergantung pada parameter. Misalnya, tipe list $\alpha$ bergantung pada argumen $\alpha$, dan ketergantungan ini membedakan list N dari list bool. Contoh lainnya adalah tipe vec $\alpha$ n, yang mewakili vektor elemen bertipe $\alpha$ dengan panjang n. Tipe ini bergantung pada dua parameter: tipe $\alpha$ : Type untuk elemen-elemen dalam vektor dan panjang n : N.
+
+Sekarang, anggap kita ingin menulis fungsi cons yang menambahkan elemen baru di awal sebuah list. Tipe apa yang seharusnya dimiliki oleh cons? Fungsi ini bersifat polimorfik: kita mengharapkan fungsi cons untuk tipe-tipe seperti N, bool, atau tipe $\alpha$ lainnya berperilaku sama. Oleh karena itu, masuk akal jika tipe tersebut menjadi argumen pertama dari cons, sehingga untuk setiap tipe $\alpha$, cons $\alpha$ menjadi fungsi penyisipan untuk list bertipe $\alpha$. Dengan kata lain, untuk setiap $\alpha$, cons $\alpha$ adalah fungsi yang menerima elemen a : $\alpha$ dan list l : list $\alpha$, dan mengembalikan list baru. Jadi, tipe fungsi tersebut adalah cons $\alpha$ a l : list $\alpha$.
+
+Jelas bahwa cons $\alpha$ seharusnya memiliki tipe $\alpha$ → list $\alpha$ → list $\alpha$. Tapi tipe apa yang seharusnya dimiliki oleh cons? Tebakan pertama mungkin adalah Type → $\alpha$ → list $\alpha$ → list $\alpha$, namun setelah dipikirkan lebih dalam, ini tidak masuk akal. $\alpha$ dalam ekspresi ini tidak merujuk pada apa pun, padahal seharusnya itu merujuk pada argumen bertipe Type. Dengan kata lain, dengan asumsi $\alpha$ : Type adalah argumen pertama dari fungsi, dua elemen berikutnya adalah $\alpha$ dan list $\alpha$. Tipe-tipe ini bervariasi tergantung pada argumen pertama, $\alpha$.
+
+Hal ini mengarah pada contoh tipe Pi, atau tipe fungsi dependensi. Diberikan $\alpha$ : Type dan $\beta$ : $\alpha$ → Type, kita bisa memikirkan $\beta$ sebagai keluarga tipe-tipe yang bergantung pada $\alpha$—tipe $\beta$ a untuk setiap a : $\alpha$. Dalam hal ini, tipe $\Pi$ x : $\alpha$, $\beta$ x menunjukkan tipe fungsi f dengan sifat bahwa, untuk setiap a : $\alpha$, f a adalah elemen dari $\beta$ a. Dengan kata lain, tipe nilai yang dikembalikan oleh f bergantung pada input-nya.
+
+Perlu dicatat bahwa $\Pi$ x : $\alpha$, $\beta$ masuk akal untuk ekspresi $\beta$ : Type apa pun. Ketika nilai dari $\beta$ bergantung pada x (seperti dalam ekspresi $\beta$ x pada paragraf sebelumnya), $\Pi$ x : $\alpha$, $\beta$ menunjukkan tipe fungsi dependensi. Ketika $\beta$ tidak bergantung pada x, $\Pi$ x : $\alpha$, $\beta$ tidak berbeda dari tipe $\alpha$ → $\beta$. Dalam dependent type theory (dan di Lean), konstruksi Pi adalah hal yang mendasar, dan $\alpha$ → $\beta$ hanya merupakan notasi untuk $\Pi$ x : $\alpha$, $\beta$ ketika $\beta$ tidak bergantung pada x.
+
+Setiap kali kita memiliki p : Prop, kita bisa menginterpretasikan p sebagai sebuah tipe, yaitu tipe dari bukti-bukti p. Kita kemudian bisa membaca t : p sebagai pernyataan bahwa t adalah sebuah bukti dari p. Setelah kita membuat identifikasi ini, aturan-aturan untuk implikasi menunjukkan bahwa kita bisa berpindah antara p maka q dan p → q. Dengan kata lain, implikasi antara proposisi p dan q berkaitan dengan memiliki sebuah fungsi yang mengambil elemen dari p dan menghasilkan elemen dari q. Akibatnya, pengenalan konektif implikasi menjadi sepenuhnya tidak perlu: kita bisa menggunakan konstruktor ruang fungsi p → q dari dependent type theory sebagai konsep implikasi.
+
+Ini adalah pendekatan yang diikuti dalam Kalkulus Konstruksi, dan karenanya juga dalam Lean. Aturan-aturan untuk implikasi dalam sistem pembuktian untuk deduksi alami yang sesuai dengan aturan-aturan yang mengatur abstraksi dan aplikasi fungsi merupakan sebuah contoh dari isomorfisma Curry-Howard, yang terkadang dikenal sebagai paradigma proposisi-sebagai-tipe.
+
+Ada setidaknya dua cara untuk memandang proposisi sebagai tipe. Bagi mereka yang memiliki pandangan konstruktif terhadap logika dan matematika, ini adalah representasi yang setia dari apa yang dimaksud dengan proposisi: sebuah proposisi p mewakili semacam tipe data, yaitu spesifikasi tipe data yang membentuk sebuah bukti. Sebuah bukti dari p kemudian hanyalah sebuah objek t : p yang memiliki tipe yang sesuai.
+
+Mereka yang tidak cenderung pada ideologi ini bisa melihatnya, sebaliknya, sebagai trik kode sederhana. Untuk setiap proposisi p, dikaitkan sebuah tipe yang kosong jika p salah dan memiliki satu elemen, sebut saja \*, jika p benar. Dalam hal ini, katakanlah bahwa (tipe yang terkait dengan) p dihuni. Kebetulan, aturan-aturan untuk aplikasi dan abstraksi fungsi dapat dengan mudah membantu kita melacak elemen-elemen mana dari Prop yang dihuni. Jadi, membangun sebuah elemen t : p memberi tahu kita bahwa p memang benar. Penghuni p dapat dianggap sebagai “fakta bahwa p itu benar.” Sebuah bukti dari p → q menggunakan “fakta bahwa p itu benar” untuk mendapatkan “fakta bahwa q itu benar”.
+
+Saran kedua cara untuk memikirkan paradigma proposisi-sebagai-tipe ini berbeda secara mendasar. Dari sudut pandang konstruktif, bukti-bukti adalah objek matematika abstrak yang dilambangkan dengan ekspresi yang sesuai dalam dependent type theory. Sebaliknya, jika kita berpikir dalam kerangka trik kode di atas, maka ekspresi itu sendiri tidak melambangkan apa-apa yang menarik. Sebaliknya, yang menarik adalah fakta bahwa kita bisa menuliskannya dan memeriksa bahwa ekspresi tersebut ber-tipe dengan baik, yang memastikan bahwa proposisi yang dimaksud benar. Dengan kata lain, ekspresi itu sendiri adalah buktinya \citep{Avigad2024}.

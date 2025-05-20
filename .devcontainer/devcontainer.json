@@ -1,0 +1,17 @@
+{
+	"build": {
+		"dockerfile": "latex/Dockerfile",
+		"context": ".",
+		"args": {
+			"__file__setup_root": "latex/setup-root",
+			"__file__setup_config": "setup-config"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"James-Yu.latex-workshop"
+			]
+		}
+	}
+}

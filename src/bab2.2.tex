@@ -1,0 +1,285 @@
+\section{Aljabar Clifford}
+
+Aljabar Clifford dapat didefinisikan dengan beberapa cara, seperti oleh aljabar eksterior, oleh \foreign{universal property}, dan oleh ideal dari aljabar tensor \citep{Lounesto2001}. Pada tinjauan ini, dikonstruksikan aljabar Clifford sebagai ideal dari aljabar tensor.
+
+\begin{defn}[Grup]
+Himpunan $G$ dengan operasi $+$ yang memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a,b,c \in G,&& a + (b + c) &= (a + b) + c \\
+    \exists 0 \in G, \forall a \in G,&& a + 0 &= a \\
+    \exists 0 \in G, \forall a \in G,&& 0 + a &= a \\
+    \forall a \in G, \exists {-a} \in G,&& a + {-a} &= 0 \\
+    \forall a \in G, \exists {-a} \in G,&& {-a} + a &= 0
+\end{align*}
+\endgroup
+adalah grup G \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Grup Abelian]
+Grup $G$ yang memenuhi sifat
+\begin{align*}
+    \forall a,b \in G,&& a + b &= b + a
+\end{align*}
+adalah grup abelian $G$ \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Homomorfisma Grup]
+Misalnya $G$ dan $H$ adalah grup, pemetaan ${\eta: G \to H}$ yang memenuhi sifat
+\begin{align*}
+    \forall a,b \in G,&& \eta(a+b) &= \eta(a) + \eta(b)
+\end{align*}
+adalah homomorfisma grup \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Endomorfisma]
+Misalnya $G$ adalah grup, homomorfisma $G$ ke dirinya sendiri, ${\eta: G \to G}$, adalah endomorfisma \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Ring]
+Himpunan $R$ dengan dua operasi $+$ dan $\cdot$ yang memenuhi grup abelian $R$ untuk operasinya $+$ dan memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a,b,c \in R,&& a(bc) &= (ab)c \\
+    \exists 1 \in R, \forall a \in R,&& a1 &= a \\
+    \exists 1 \in R, \forall a \in R,&& 1a &= a \\
+    \forall a,b,c \in R,&& a(b+c) &= ab + ac \\
+    \forall a,b,c \in R,&& (a+b)c &= ac + bc
+\end{align*}
+\endgroup
+adalah ring $R$ \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Ring Komutatif]
+Ring $R$ yang memenuhi sifat
+\begin{align*}
+    \forall a,b \in R,&& ab &= ba
+\end{align*}
+adalah ring komutatif $R$ \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Homomorfisma Ring]
+Misalnya $R$ dan $S$ adalah ring, pemetaan ${\eta: R \to S}$ yang memenuhi homomorfisma grup dan memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a,b \in R,&& \eta(ab) &= \eta(a)\eta(b) \\
+    \exists 1 \in R, \forall a \in R,&& \eta(a)\eta(1) &= \eta(a) \\
+    \exists 1 \in R, \forall a \in R,&& \eta(1)\eta(a) &= \eta(a)
+\end{align*}
+\endgroup
+adalah homomorfisma ring \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Anti-homomorfisma Ring]
+Misalnya $R$ dan $S$ adalah ring, pemetaan ${\eta: R \to S}$ yang memenuhi homomorfisma grup dan memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a,b \in R,&& \eta(ab) &= \eta(b)\eta(a) \\
+    \exists 1 \in R, \forall a \in R,&& \eta(a)\eta(1) &= \eta(a) \\
+    \exists 1 \in R, \forall a \in R,&& \eta(1)\eta(a) &= \eta(a)
+\end{align*}
+\endgroup
+adalah anti-homomorfisma \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Ring dari Himpunan Endomorfisma Grup Abelian]
+Misalnya $M$ adalah grup abelian, $\edom{M}$ adalah himpunan endomorfima $M$. Didefinisikan operasi ${\eta + \zeta}$,
+\begin{align*}
+	\forall \eta,\zeta \in \edom{M}, \forall x \in M,&& (\eta + \zeta)(x) &= \eta(x) + \zeta(x)
+\end{align*}
+yang merupakan endomorfisma $M$, maka ${\eta + \zeta \in \edom{M}}$. Kemudian, diketahui operasi komposisi $\eta\zeta$
+\begin{align*}
+	\forall \eta,\zeta \in \edom{M}, \forall x \in M,&& (\eta\zeta)(x) &= \eta(\zeta(x))
+\end{align*}
+yang jelas $\eta\zeta \in \edom{M}$. Didapatkan $\edom{M}$ memenuhi
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall \eta,\zeta,\rho \in \edom{M}, \forall x \in M,&& (\eta + (\zeta + \rho))(x) &= ((\eta + \zeta) + \rho)(x) \\
+    \exists 0 \in \edom{M}, \forall \eta \in \edom{M}, \forall x \in M,&& \eta(x) + 0(x) &= \eta(x) \\
+    \exists 0 \in \edom{M}, \forall \eta \in \edom{M}, \forall x \in M,&& 0(x) + \eta(x) &= \eta(x) \\
+    \forall \eta \in \edom{M}, \exists {-\eta} \in \edom{M}, \forall x \in M,&& \eta(x) + {-\eta(x)} &= 0 \\
+    \forall \eta \in \edom{M}, \exists {-\eta} \in \edom{M}, \forall x \in M,&& {-\eta(x)} + \eta(x) &= 0 \\
+    \forall \eta,\zeta \in \edom{M}, \forall x \in M,&& \eta(x) + \zeta(x) &= \zeta(x) + \eta(x) \\
+    \forall \eta,\zeta,\rho \in \edom{M}, \forall x \in M,&& (\eta(\zeta\rho))(x) &= ((\eta\zeta)\rho)(x) \\
+    \exists 1 \in \edom{M}, \forall \eta \in \edom{M}, \forall x \in M,&& (\eta1)(x) &= \eta(x) \\
+    \exists 1 \in \edom{M}, \forall \eta \in \edom{M}, \forall x \in M,&& (1\eta)(x) &= \eta(x) \\
+    \forall \eta,\zeta,\rho \in \edom{M}, \forall x \in M,&& (\eta(\zeta+\rho))(x) &= (\eta\zeta)(x) + (\eta\rho)(x) \\
+    \forall \eta,\zeta,\rho \in \edom{M}, \forall x \in M,&& ((\eta+\zeta)\rho)(x) &= (\eta\rho)(x) + (\zeta\rho)(x)
+\end{align*}
+\endgroup
+sehingga $\edom{M}$ dengan operasinya ${\eta + \zeta}$ dan $\eta\zeta$ adalah ring \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Modul Kiri]
+Misalkan $R$ adalah ring dan $M$ adalah grup abelian. Modul kiri atas $R$, disebut juga modul-$R$ kiri, adalah grup abelian $M$ bersama dengan pemetaan ${(a, x) \to ax : R \times M \to M}$ yang memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a \in R, \forall x,y \in M,&& a(x + y) &= ax + ay \\
+    \forall a,b \in R, \forall x \in M,&& (a + b)x &= ax + bx \\
+    \forall a,b \in R, \forall x \in M,&& (ab)x &= a(bx) \\
+    1 \in R, \forall x \in M,&& 1x &= x
+\end{align*}
+\endgroup
+Diberikan homomorfisma ring ${\eta: R \to \edom{M}}$ dan didefinisikan ${ax = \eta(a)x}$, pemetaan $ax$ memehuni sifat-sifat tersebut karena
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \forall a \in R, \forall x,y \in M,&& \eta(a)(x + y) &= \eta(a)(x) + \eta(a)(y) \\
+    \forall a,b \in R, \forall x \in M,&& \eta(a + b)(x) &= \eta(a)(x) + \eta(b)(x) \\
+    \forall a,b \in R, \forall x \in M,&& \eta(ab)(x) &= \eta(a)(\eta(b)(x)) \\
+    1 \in R, \forall x \in M,&& \eta(1)x &= x
+\end{align*}
+\endgroup
+Perhatikan bahwa pemetaan ${(a, x) \to ax : (R \times M) \to M}$ dapat diubah bentuk menggunakan \foreign{currying} menjadi ${\eta : R \to (M \to M)}$ \citep{Avigad2024,Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Modul Kanan]
+Misalkan $R$ adalah ring dan $M$ adalah grup abelian. Modul kanan atas $R$, disebut juga modul-$R$ kanan, adalah grup abelian $M$ bersama dengan pemetaan ${(x, a) \to xa : M \times R \to M}$ yang memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align}
+    \forall a \in R, \forall x,y \in M,&& (x + y)a &= xa + ya \label{eq:rm1} \\
+    \forall a,b \in R, \forall x \in M,&& x(a + b) &= xa + xb \label{eq:rm2} \\
+    \forall a,b \in R, \forall x \in M,&& x(ab) &= (xa)b \label{eq:rm3}  \\
+    1 \in R, \forall x \in M,&& x1 &= x \label{eq:rm4}
+\end{align}
+\endgroup
+Diberikan anti-homomorfisma ring ${\eta: R \to \edom{M}}$ dan didefinisikan ${xa = \eta(a)x}$, pemetaan $xa$ memenuhi sifat \ref{eq:rm2} karena
+\begin{align*}
+    \forall a,b \in R, \forall x \in M,&& \eta(ab)(x) &= \eta(b)(\eta(a)(x))
+\end{align*}
+dan jelas memenuhi sifat-sifat \ref{eq:rm1}, \ref{eq:rm3}, dan \ref{eq:rm4} \citep{Jacobson1995}.
+\end{defn}
+
+\begin{defn}[Modul]
+Ketika $R$ adalah ring komutatif, tidak dibedakan antara modul kiri dan modul kanannya, dan disebut sebagai modul-$R$ \citep{Jacobson1995}.
+\end{defn}
+
+\begin{samepage}
+\begin{defn}[Direct Sum Modul]
+Misalnya $M_1$, $M_2$, ..., $M_n$ adalah modul atas ring $R$ yang sama, didefinisikan $M$ sebagai ${M_1 \times M_2 \times ... \times M_n}$, dan didefinisikan operasi
+\begin{align*}
+	\begin{split}
+		\forall x_1,y_1 \in M_1, \forall x_2,y_2 \in M_2, ..., \forall x_n,y_n \in M_n,&&
+		(x_1,x_2,...,x_n) + (y_1,y_2,...,y_n) &= (x_1+y_1,x_2+y_2,...,x_n+y_n)
+	\end{split} \\
+	\begin{split}
+		\forall a \in $, \forall x_1 \in M_1, \forall x_2 \in M_2, ..., \forall x_n \in M_n,&&
+		a(x_1,x_2,...,x_n) &= (ax_1,ax_2,...,ax_n)
+	\end{split}
+\end{align*}
+Maka, $M$ adalah modul-$R$, dan dinotasikan sebagai ${M_1 \oplus M_2 \oplus ... \oplus M_n}$ atau ${\oplus_1^n M_i}$ \citep{Jacobson1995}.
+\end{defn}
+\end{samepage}
+
+\begin{samepage}
+\begin{defn}[Homomorfisma Modul]
+Misalnya $R$ adalah ring komutatif, $M$ adalah modul-$R$, dan $M'$ adalah modul-$R$. Pemetaan ${\eta: M \to M'}$ yang memenuhi sifat-sifat
+\begin{align*}
+	\forall x,y \in M,&& \eta(x + y) = \eta(x) + \eta(y) \\
+	\forall a \in R, \forall x \in M,&& \eta(ax) = a\eta(x)
+\end{align*}
+adalah homomorfisma modul-$R$, atau pemetaan linier-$R$.
+\end{defn}
+\end{samepage}
+
+\begin{defn}[Pemetaan Biliner]
+Misalnya $V$, $W$, dan $X$ adalah modul-$R$, pemetaan ${B: V \times W \to X}$ yang memenuhi sifat-sifat
+\begin{align*}
+	\forall v,v' \in V, \forall w \in W,&& B(v + v', w) &= B(v, w) + B(v', w) \\
+	\forall v \in V, \forall w,w' \in W,&& B(v, w + w') &= B(v, w) + B(v, w') \\
+	\forall \lambda \in R, \forall v \in V, \forall w \in W,&& B(\lambda v, w) &= \lambda B(v, w) \\
+	\forall \lambda \in R, \forall v \in V, \forall w \in W,&& B(v, \lambda w) &= \lambda B(v, w)
+\end{align*}
+adalah pemetaan bilinier.
+\end{defn}
+
+\begin{samepage}
+\begin{defn}[Aljabar Asosiatif]
+Misalkan $R$ adalah ring komutatif dan $A$ adalah ring. $A$ bersama dengan pemetaan ${(\lambda, x) \to \lambda x : R \times A \to A}$ yang memenuhi sifat modul-$R$ dan memenuhi sifat-sifat
+\begin{align*}
+	\forall \lambda \in R, \forall x,y \in A,&& (\lambda x)y &= \lambda(xy) \label{eq:aa1} \\
+	\forall \lambda \in R, \forall x,y \in A,&& x(\lambda y) &= \lambda(xy) \label{eq:aa2}
+\end{align*}
+adalah aljabar asosiatif atas $R$, disebut juga aljabar asosiatif-$R$, atau bisa lebih sederhananya aljabar-$R$.
+\end{defn}
+\end{samepage}
+
+% Perhatikan bahwa misalnya $V$ adalah modul-$R$, maka $V$ adalah grup abelian, dan dengan pemetaan bilinier ${(x, y) \to xy : V \times V \to V}$, secara bersamaan $V$ dapat menjadi ring dan sekaligus memenuhi sifat-sifat \ref{eq:aa1} dan \ref{eq:aa2}, sehingga $V$ adalah aljabar asosiatif-$R$.
+
+\begin{defn}[Homomorfisma Aljabar Asosiatif]
+Misalkan $R$ adalah ring komutatif, $A$ adalah aljabar asosiatif-$R$, dan $A'$ adalah aljabar asosiatif-$R$, pemetaan ${\phi : A \to A'}$ yang memenuhi sifat-sifat
+\begin{align*}
+	\forall x,y \in A,&& \phi(x + y) &= \phi(x) + \phi(y) \\
+	\forall x,y \in A,&& \phi(xy) &= \phi(x)\phi(y) \\
+	\exists 1 \in A, \forall x \in A,&& \phi(x)\phi(1) &= \phi(x) \\
+	\exists 1 \in A, \forall x \in A,&& \phi(1)\phi(x) &= \phi(x) \\
+	\forall \lambda \in R, \forall x \in A,&& \phi(\lambda x) &= \lambda\phi(x)
+\end{align*}
+adalah homomorfisma aljabar asosiatif.
+\end{defn}
+
+\begin{defn}[Isomorfisma Aljabar Asosiatif]
+Homomorfisma aljabar asosiatif yang bijektif adalah isomorfisma aljabar asosiatif.
+\end{defn}
+
+\begin{defn}[Bentuk Bilinier]
+Misalnya $R$ adalah ring komutatif dan $V$ adalah modul-$R$, pemetaan ${B: V \times V \to R}$ yang memenuhi sifat-sifat
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+	\forall x,x',y \in V,&& B(x + x', y) &= B(x, y) + B(x', y) \\
+	\forall x,y,y' \in V,&& B(x, y + y') &= B(x, y) + B(x, y') \\
+	\forall a \in R, \forall x,y \in V,&& B(ax, y) &= aB(x, y) \\
+	\forall a \in R, \forall x,y \in V,&& B(x, ay) &= aB(x, y)
+\end{align*}
+\endgroup
+adalah bentuk bilinier $B$ pada $V$. Menggunakan induksi, $B$ dapat digeneralisasikan
+\begin{align*}
+	\forall a_i,b_i \in R, \forall x_i,y_i \in V,&& B(\sum_1^n a_i x_i, \sum_1^m b_j y_j) &= \sum_1^n \sum_1^m a_i b_j B(x_i, y_j)
+\end{align*}
+\citep{Jacobson1995}.
+\end{defn}
+
+\begingroup
+\allowdisplaybreaks
+\begin{defn}[Bentuk Kuadratik]
+Misalnya $R$ adalah ring komutatif dan $V$ adalah modul-$R$, pemetaan ${Q: V \to R}$ yang memenuhi sifat-sifat
+\begin{align*}
+	\forall a \in R, \forall x \in V,&& Q(ax) &= a^2Q(x) \\
+	\forall x,y \in V,&& B(x, y) &= Q(x + y) - Q(x) - Q(y)
+\end{align*}
+dengan $B$ bentuk bilinier, adalah bentuk kuadratik Q. Dapat dilihat jelas bahwa
+\begin{align*}
+	\begin{split}
+		\forall a,b \in R, \forall x,y \in V,&&
+		Q(ax + by) &= Q(ax) + Q(by) + B(ax,by) \\
+		&= a^2 Q(x) + b^2 Q(y) + abB(x,y)
+	\end{split}
+\end{align*}
+dan menggunakan induksi, $Q$ dapat digeneralisasikan
+\begin{align*}
+	Q(\sum a_i e_i) = \sum_i a_i^2 Q(e_i) + \sum_{i < j} a_i a_j B(e_i,e_j)
+\end{align*}
+\citep{Jacobson1995}.
+\end{defn}
+\endgroup
+
+\begin{defn}[Tensor Product]
+Misalnya $M$ dan $N$ adalah modul $R$. Tensor product dari $M$ dan $N$ adalah modul ${M \otimes N}$ bersama dengan pemetaan bilinier ${(u,v) \to u \otimes v : M \times N \to M \otimes N}$ yang memenuhi
+\begin{enumerate}
+	\item ${M \otimes N}$ digenerate sebagai modul-$R$ oleh ${\{u \otimes v : u \in M, v \in N\}}$
+	\item Misalnya ${\Phi: M \times N \to P}$ adalah pemetaan bilinier modul-$R$ dimana ${\Phi(u,\star): N \to P}$ dan ${\Phi(\star,v): M \to P}$ adalah homomorfisma modul, maka terdapat homomorfisma ${\phi: M \otimes N \to P}$ sehingga ${\phi(u \otimes v) = \Phi(u, v)}$ untuk semua ${u \in M}$ dan ${v \in N}$.
+\end{enumerate}
+\citep{Pierce1982}.
+\end{defn}
+
+\begin{defn}[Aljabar Clifford]
+Misalnya $R$ adalah ring komutatif, $V$ adalah modul-$R$, ${B: V \times V \to R}$ adalah bentuk bilinier, ${Q: V \to R}$ adalah bentuk kuadratik, $\mathcal{T}$ adalah aljabar-$R$ dari modul-$R$ dan perkalian bilinier, \foreign{quotient} dari aljabar tensor $\mathcal{T}$ oleh relasi \foreign{closure} ${v^2 = Q(v)}$ adalah aljabar Clifford \citep{Wieser2024}.
+\end{defn}

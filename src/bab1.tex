@@ -1,0 +1,43 @@
+\section{Latar Belakang}
+
+Aljabar Clifford digunakan dalam berbagai bidang matematika: 1) bidang analisis diferensial, digunakan dalam pembuktian teorema indeks Atiyah-Singer; 2) bidang analisis harmonik, sedemikian transformasi Riesz memberikan generalisasi dimensi lebih tinggi dari transformasi Hilbert; 3) bidang geometri, menjelaskan struktur grup klasik melalui grup spin; 4) bidang fisika matematis, yang mana aljabar Clifford menyediakan kerangka untuk teori elektromagnetik, partikel spin 1/2, dan operator Dirac dalam mekanika kuantum relativistik \citep{Garling2011}. Aljabar ini menggeneralisasi bilangan kompleks dan kuaternion, secara elegan menghubungkan geometri dan aljabar. Aljabar ini dapat menyatukan empat persamaan Maxwell menjadi satu ekspresi. Dan aljabar ini memiliki penggunaan yang menarik di bidang komputer grafis, komputasi visual, dan robotika \citep{Wieser2024}. Dengan aplikasinya yang luas ini, banyaklah alasan kuat untuk mempelajari aljabar Clifford, karena aljabar ini menawarkan alat yang efektif untuk eksplorasi teoretis maupun pemecahan masalah praktis.
+
+Di era di mana bukti matematika telah menjadi begitu panjang hingga menyerupai novel, kemungkinan terjadinya kesalahan manusia semakin meningkat. Hal ini menimbulkan kebutuhan untuk verifikasi formal yang memungkinkan komputer untuk membantu memeriksa kebenaran bukti \citep{Palmer2020}. Sebagai contoh adalah konjektur Kepler, dibuktikan pada tahun 1993, tetapi karena bukti tersebut sangat rumit sehingga masih ada keraguan mengenai kebenarannya. Akhirnya konjektur tersebut berhasil selesai diformalisasikan di tahun 2014 \citep{Tao2024}. Sebagai contoh lain, bukti awal Andrew Wiles untuk Fermat's Last Theorem mengandung kesalahan yang harus dikoreksi, mengilustrasikan bagaimana penggunaan alat verifikasi bisa membantu Wiles mengidentifikasi kesalahan itu lebih awal \citep{Palmer2020}. Hal-hal ini menunjukkan bahwa verifikasi formal akan menjadi bagian penting dari masa depan matematika.
+
+Lean adalah \thpr{} yang dikembangkan di Microsoft Research dan Carnegie Mellon University. Lean memiliki kernel kecil yang terpercaya, yang didasarkan pada dependent type theory. Saat ini, Lean digunakan untuk memformalkan teori kategori, teori tipe homotopi, dan aljabar abstrak \citep{Moura2015}. Konstruksi aljabar Clifford telah diformaliksikan dalam Lean oleh Wieser, dan telah ia telah menformalisasikan pula beberapa isomorfisma dalam aljabar Clifford seperti kepada bilangan riil, bilangan kompleks, bilangan dual, dan kuaternions \citep{Wieser2024}. Pada buku \cite{Lounesto2001}, terdapat  isomorfisma antara aljabar matriks dan aljabar Clifford,
+\begin{align*}
+    \icmraw
+\end{align*}
+Hasil ini belum memiliki formalisasinya dalam Lean. Pada tugas akhir ini, akan dilakukan  formalisasi hasil tersebut.
+
+\section{Rumusan Masalah}
+
+Berdasarkan latar belakang yang telah dibahas sebelumnya, didapat rumusan masalah pada topik ini adalah sebagai berikut.
+
+\begin{enumerate} % Enumerate digunakan untuk membuat list angka
+    \item Bagaimana dapat memperoleh pembuktian hasil \icm{}?
+    \item Bagaimana dengan menggunakan Lean dapat memperoleh formalisasi hasil \icm{}?
+\end{enumerate}
+
+\section{Batasan Masalah}
+
+\begin{enumerate}
+    \item Tugas akhir ini hanya membahas isomorfisma antara aljabar matriks dan aljabar Clifford, tidak membahas isomorfisma lainnya.
+    \item Tugas akhir ini hanya membahas isomorfisma bardasarkan hasil \icm{}, tidak untuk dari hasil lainnya.
+    \item Tugas akhir ini menggunakan Lean 4, tidak Lean versi lainnya.
+\end{enumerate}
+
+\section{Tujuan}
+
+\begin{enumerate}
+    \item Mendapatkan bukti dari hasil \icm{}.
+    \item Mendapatkan formalisasi dari hasil \icm{}.
+\end{enumerate}
+
+\section{Manfaat}
+
+\begin{enumerate}
+    \item Memberikan kontribusi pada upaya formalisasi matematika.
+    \item Meningkatkan pemahaman tentang aljabar Clifford dan menunjukkan potensi verifikasi formal dalam matematika modern.
+    \item Menghubungkan hasil teoritis abstrak dengan hasil yang dapat diverifikasi secara formal.
+\end{enumerate}
